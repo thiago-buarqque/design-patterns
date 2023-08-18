@@ -15,13 +15,11 @@ public class Main {
 
         screenManager.addElement(archer);
         archer.fire();
-        archer.fire();
-        archer.fire();
+        archer.buff(0.1);
 
         GameCharacter lumberjack = new Lumberjack(new Position3D(100, 100, 100));
         screenManager.addElement(lumberjack);
 
-        lumberjack.fire();
         lumberjack.fire();
 
         System.out.println("Removing lumberjack from screen...");

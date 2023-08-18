@@ -3,13 +3,13 @@ package design.patterns.creational.prototype.graphic.element.character;
 import design.patterns.creational.prototype.Mesh;
 import design.patterns.creational.prototype.Position3D;
 import design.patterns.creational.prototype.ScreenManager;
-import design.patterns.creational.prototype.graphic.element.Element3D;
+import design.patterns.creational.prototype.graphic.element.Element3DImpl;
 import design.patterns.creational.prototype.graphic.element.GraphicElement;
 import design.patterns.creational.prototype.graphic.element.weapon.Projectile;
 import lombok.Getter;
 
 @Getter
-public abstract class GameCharacter extends Element3D {
+public abstract class GameCharacter extends Element3DImpl {
     private final Projectile projectile;
     // use that to know where the character is
     // The same position as the base Projectile
@@ -27,6 +27,11 @@ public abstract class GameCharacter extends Element3D {
         super(id, mesh, name, position3D);
 
         this.projectile = projectile;
+    }
+
+    public void buff(double amount) {
+        this.projectile.setAcceleration(this.projectile.getAcceleration() * amount);
+        this.projectile.setDamage(this.projectile.getDamage() * amount);
     }
 
     public final void fire() {
@@ -48,6 +53,9 @@ public abstract class GameCharacter extends Element3D {
                               this.getName(), this.getProjectile().getName());
 
             GraphicElement weapon = this.projectile.makeClone();
+
+            this.projectile.attach(weapon);
+
             System.out.printf("Projectile memory id: %s\n\n",
                               Integer.toHexString(
                                       System.identityHashCode(weapon)));

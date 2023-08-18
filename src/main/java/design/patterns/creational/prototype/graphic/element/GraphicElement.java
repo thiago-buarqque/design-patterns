@@ -1,11 +1,10 @@
 package design.patterns.creational.prototype.graphic.element;
 
+import design.patterns.behavioral.observer.GraphicElementObserver;
+import design.patterns.behavioral.observer.GraphicElementSubject;
 import design.patterns.creational.prototype.Cloneable;
-import design.patterns.creational.prototype.Position3D;
 
-public interface GraphicElement extends Cloneable<GraphicElement> {
+public interface GraphicElement extends Cloneable<GraphicElement>, GraphicElementObserver, GraphicElementSubject {
     public String getId();
     public String getName();
-    public Position3D getPosition3D();
-    public void setPosition3D(Position3D position3D);
 }
