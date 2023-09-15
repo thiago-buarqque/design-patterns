@@ -1,31 +1,54 @@
 package design.patterns;
 
-import design.patterns.creational.prototype.graphic.element.character.Archer;
-import design.patterns.creational.prototype.graphic.element.character.GameCharacter;
-import design.patterns.creational.prototype.graphic.element.character.Lumberjack;
-import design.patterns.creational.prototype.Position3D;
-import design.patterns.creational.prototype.ScreenManager;
+import design.patterns.behavioral.strategy.notification.Notification;
+import design.patterns.behavioral.strategy.notification.NotificationManager;
+import design.patterns.behavioral.strategy.Phone;
+import design.patterns.behavioral.strategy.sound.SoundMode;
+import design.patterns.behavioral.strategy.sound.SoundModeManager;
 
 public class Main {
     public static void main(String[] args) {
-        ScreenManager screenManager = ScreenManager.getInstance();
+        SoundModeManager soundModeManager = SoundModeManager.getInstance();
 
-        Position3D defaultPosition = new Position3D(0, 0, 0);
-        GameCharacter archer = new Archer(defaultPosition);
+        soundModeManager.setSoundMode(SoundMode.NORMAL);
 
-        screenManager.addElement(archer);
-        archer.fire();
-        archer.buff(0.1);
+        NotificationManager notificationManager = NotificationManager.getInstance();
 
-        GameCharacter lumberjack = new Lumberjack(new Position3D(100, 100, 100));
-        screenManager.addElement(lumberjack);
+        Notification notification = new Notification(
+                "games", "You village was attacked", "../path.svg",
+                true, "Village master");
 
-        lumberjack.fire();
+        notificationManager.sendNotification(notification);
 
-        System.out.println("Removing lumberjack from screen...");
-        screenManager.removeElement(lumberjack);
+        soundModeManager.setSoundMode(SoundMode.SILENCE);
 
-        System.out.println("Trying to throw lumberjack's axe...");
-        lumberjack.fire();
+        Phone.setScreenLocked(true);
+
+        notificationManager.sendNotification(notification);
+
+        Phone.setScreenLocked(false);
+
+        soundModeManager.setSoundMode(SoundMode.VIBRATE);
+
+        notificationManager.sendNotification(notification);
+//        ScreenManager screenManager = ScreenManager.getInstance();
+//
+//        Position3D defaultPosition = new Position3D(0, 0, 0);
+//        GameCharacter archer = new Archer(defaultPosition);
+//
+//        screenManager.addElement(archer);
+//        archer.fire();
+//        archer.buff(0.1);
+//
+//        GameCharacter lumberjack = new Lumberjack(new Position3D(100, 100, 100));
+//        screenManager.addElement(lumberjack);
+//
+//        lumberjack.fire();
+//
+//        System.out.println("Removing lumberjack from screen...");
+//        screenManager.removeElement(lumberjack);
+//
+//        System.out.println("Trying to throw lumberjack's axe...");
+//        lumberjack.fire();
     }
 }

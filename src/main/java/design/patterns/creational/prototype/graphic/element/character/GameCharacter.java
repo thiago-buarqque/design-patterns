@@ -52,15 +52,15 @@ public abstract class GameCharacter extends Element3DImpl {
             System.out.printf("%s is firing %s\n",
                               this.getName(), this.getProjectile().getName());
 
-            GraphicElement weapon = this.projectile.makeClone();
+            GraphicElement newProjectile = this.projectile.makeClone();
 
-            this.projectile.attach(weapon);
+            this.projectile.attach(newProjectile);
 
             System.out.printf("Projectile memory id: %s\n\n",
                               Integer.toHexString(
-                                      System.identityHashCode(weapon)));
+                                      System.identityHashCode(newProjectile)));
 
-            screenManager.addElement(weapon);
+            screenManager.addElement(newProjectile);
         } catch (CloneNotSupportedException e) {
             System.out.println(
                     "Can not render " + this.projectile.getName());
