@@ -3,7 +3,9 @@ package design.patterns.behavioral.strategy.notification;
 import design.patterns.behavioral.strategy.sound.SoundLevelObserver;
 import design.patterns.behavioral.strategy.sound.SoundMode;
 import design.patterns.behavioral.strategy.sound.SoundModeSubject;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class NotificationManager implements SoundLevelObserver {
     private NotificationSoundStrategy strategy;
     private static NotificationManager instance;
@@ -14,9 +16,6 @@ public class NotificationManager implements SoundLevelObserver {
         }
 
         return instance;
-    }
-
-    private NotificationManager() {
     }
 
     @Override

@@ -25,14 +25,12 @@ public class VibrateNotificationSoundStrategy extends BaseNotificationSoundStrat
         System.out.println("Sending notification to top bar. " +
                                    "Current sound state is 'VIBRATE'");
         if (!notificationManager.isCategorySilencedAtTopBar(
-                notification.getCategory())) {
+                notification.getCategory()) && Phone.isScreenAwaken()) {
 
-            if (Phone.isScreenAwaken()) {
-                Phone.vibrate();
+            Phone.vibrate();
 
-                if (notification.isHighPriority()) {
-                    // show popup
-                }
+            if (notification.isHighPriority()) {
+                // show popup
             }
         }
     }
