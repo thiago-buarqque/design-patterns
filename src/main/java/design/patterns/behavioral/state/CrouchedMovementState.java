@@ -10,7 +10,7 @@ public class CrouchedMovementState extends BaseMovementState {
     public void jump() {
         System.out.println("(Jump) Getting up, leaving crouch mode");
         this.playerContext.setMovementState(
-                new JumpingMovementState(this.playerContext));
+                new StandingMovementState(this.playerContext));
     }
 
     @Override
